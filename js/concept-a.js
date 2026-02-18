@@ -288,3 +288,48 @@ window.addEventListener('resize', () => {
   resizeChart();
   drawChart();
 });
+
+// ============================================
+// AUTH MODAL
+// ============================================
+const authOverlay = document.getElementById('authOverlay');
+const userIconBtn = document.getElementById('userIconBtn');
+const authClose = document.getElementById('authClose');
+let isLoggedIn = false;
+
+userIconBtn.addEventListener('click', () => {
+  if (isLoggedIn) {
+    // Toggle logged out
+    isLoggedIn = false;
+    userIconBtn.classList.remove('logged-in');
+    return;
+  }
+  authOverlay.classList.add('visible');
+});
+
+authClose.addEventListener('click', () => {
+  authOverlay.classList.remove('visible');
+});
+
+authOverlay.addEventListener('click', (e) => {
+  if (e.target === authOverlay) authOverlay.classList.remove('visible');
+});
+
+// Auth tab switching
+document.querySelectorAll('.auth-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.auth === 'login' ? 'authLogin' : 'authRegister').classList.add('active');
+  });
+});
+
+// Simulate sign in / register
+document.querySelectorAll('.auth-submit, .auth-social').forEach(btn => {
+  btn.addEventListener('click', () => {
+    isLoggedIn = true;
+    userIconBtn.classList.add('logged-in');
+    authOverlay.classList.remove('visible');
+  });
+});
