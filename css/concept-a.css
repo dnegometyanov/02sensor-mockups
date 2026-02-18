@@ -178,7 +178,7 @@
 .spo2-section {
   text-align: center;
   margin-right: auto;
-  margin-left: 24px;
+  margin-left: 12px;
 }
 .spo2-gauge {
   position: relative;
@@ -188,11 +188,16 @@
 .pulse-badge {
   position: absolute;
   right: 16px;
-  top: 4px;
+  top: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 0;
+}
+.pulse-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 .spo2-gauge svg {
   width: 100%;
@@ -296,8 +301,8 @@
    PPG WAVEFORM (inside pulse badge)
    ============================================ */
 .ppg-canvas {
-  width: 80px;
-  height: 40px;
+  width: 70px;
+  height: 28px;
   display: block;
   margin-top: 2px;
 }
