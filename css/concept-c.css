@@ -1,0 +1,482 @@
+/* ============================================
+   CAREGIVER TOP ROW (title + user icon)
+   ============================================ */
+.caregiver-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.caregiver-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ============================================
+   EMERGENCY BANNER
+   ============================================ */
+.emergency-banner {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  margin-bottom: 12px;
+  animation: emergencyPulse 2s ease-in-out infinite;
+}
+.emergency-banner.visible {
+  display: flex;
+}
+.emergency-banner-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.emergency-banner-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  line-height: 1.3;
+}
+@keyframes emergencyPulse {
+  0%, 100% { border-color: rgba(255, 59, 48, 0.3); }
+  50% { border-color: rgba(255, 59, 48, 0.7); box-shadow: 0 0 12px rgba(255, 59, 48, 0.15); }
+}
+[data-theme="light"] .emergency-banner {
+  background: rgba(255, 59, 48, 0.08);
+}
+
+/* ============================================
+   PATIENTS HEADER
+   ============================================ */
+.patients-header {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+/* ============================================
+   PATIENT GRID (vertical card stack)
+   ============================================ */
+.patient-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+/* ============================================
+   PATIENT CARD
+   ============================================ */
+.patient-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px var(--glass-shadow);
+}
+.patient-card:hover,
+.patient-card:active {
+  border-color: var(--blue);
+  box-shadow: 0 4px 16px var(--glass-shadow);
+}
+.patient-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.patient-info {
+  flex: 1;
+  min-width: 0;
+}
+.patient-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+.patient-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.patient-connection-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+}
+.patient-vitals {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.patient-spo2 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.patient-spo2-unit {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.patient-pulse {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.patient-pulse-heart {
+  font-size: 12px;
+  color: var(--red);
+}
+.patient-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.patient-sparkline {
+  width: 64px;
+  height: 24px;
+  display: block;
+}
+.patient-alert-text {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.patient-alert-text.alert-active {
+  color: var(--red);
+  font-weight: 600;
+}
+.patient-alert-text.alert-warning {
+  color: var(--yellow);
+  font-weight: 600;
+}
+[data-theme="light"] .patient-alert-text.alert-warning {
+  color: #b8860b;
+}
+.patient-chevron {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   DETAIL VIEW
+   ============================================ */
+.detail-back-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.detail-back-btn {
+  background: none;
+  border: none;
+  color: var(--blue);
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  transition: opacity 0.2s;
+}
+.detail-back-btn:hover {
+  opacity: 0.7;
+}
+.detail-back-arrow {
+  font-size: 20px;
+  line-height: 1;
+}
+.detail-patient-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+/* Detail donut ring */
+.detail-ring-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.detail-ring-container {
+  position: relative;
+  text-align: center;
+  width: 130px;
+}
+.detail-ring-svg {
+  width: 130px;
+  height: 130px;
+  transform: rotate(-90deg);
+}
+.detail-ring-track {
+  fill: none;
+  stroke: rgba(255,255,255,0.06);
+  stroke-width: 10;
+}
+[data-theme="light"] .detail-ring-track {
+  stroke: rgba(0,0,0,0.06);
+}
+.detail-ring-fill {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke: url(#gradDetailO2);
+  filter: drop-shadow(0 0 6px rgba(48, 209, 88, 0.5));
+  transition: stroke-dasharray 1s ease;
+}
+.detail-ring-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.detail-ring-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.detail-ring-unit {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+.detail-ring-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+.detail-ring-status {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+
+/* Detail pulse row */
+.detail-pulse-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.detail-pulse-heart {
+  font-size: 18px;
+  color: var(--red);
+  animation: heartbeat 1s ease-in-out infinite;
+}
+.detail-pulse-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+}
+.detail-pulse-unit {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Quick actions */
+.quick-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.quick-action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-primary);
+  font-family: var(--font);
+  box-shadow: 0 2px 8px var(--glass-shadow);
+}
+.quick-action-btn:hover {
+  border-color: var(--blue);
+}
+.quick-action-icon {
+  font-size: 20px;
+}
+.quick-action-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   CHART SECTION (same pattern as A/B)
+   ============================================ */
+.chart-section {
+  margin-bottom: 14px;
+}
+.period-selector {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--tab-bg);
+  border-radius: 10px;
+  border: 1px solid var(--tab-border);
+  margin-bottom: 12px;
+}
+.period-btn {
+  flex: 1;
+  padding: 6px 0;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.period-btn.active {
+  background: var(--tab-active);
+  color: var(--text-primary);
+  box-shadow: 0 1px 4px var(--glass-shadow);
+}
+.chart-card {
+  padding: 12px;
+}
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.chart-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.chart-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.chart-canvas {
+  width: 100%;
+  height: 80px;
+  display: block;
+  border-radius: 8px;
+}
+.chart-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--glass-border);
+}
+.chart-stat {
+  text-align: center;
+}
+.chart-stat-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.chart-stat-label {
+  font-size: 9px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
+/* Detail health alert */
+.detail-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+.detail-alert-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.detail-alert-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.detail-alert.alert-green {
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+.detail-alert.alert-green .detail-alert-text {
+  color: var(--green);
+}
+.detail-alert.alert-red {
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid rgba(255, 59, 48, 0.25);
+}
+.detail-alert.alert-red .detail-alert-text {
+  color: var(--red);
+}
+.detail-alert.alert-yellow {
+  background: rgba(255, 214, 10, 0.10);
+  border: 1px solid rgba(255, 214, 10, 0.20);
+}
+.detail-alert.alert-yellow .detail-alert-text {
+  color: var(--yellow);
+}
+[data-theme="light"] .detail-alert.alert-yellow .detail-alert-text {
+  color: #b8860b;
+}

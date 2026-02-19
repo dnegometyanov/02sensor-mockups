@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O2 Pulse — Concept A: Clinical Monitor</title>
+<title>O2 Pulse — Concept C: Caregiver View</title>
 <link rel="stylesheet" href="css/shared.css">
 <link rel="stylesheet" href="css/iphone-chrome.css">
-<link rel="stylesheet" href="css/concept-a.css">
+<link rel="stylesheet" href="css/concept-c.css">
 </head>
 <body>
 
@@ -14,10 +14,10 @@
 <nav class="top-nav">
   <div class="nav-links">
     <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link active" href="concept-a.html">Concept A</a>
+    <a class="nav-link" href="concept-a.html">Concept A</a>
     <a class="nav-link" href="concept-b.html">Concept B</a>
     <a class="nav-link" href="watch.html">Watch</a>
-    <a class="nav-link" href="concept-c.html">Concept C</a>
+    <a class="nav-link active" href="concept-c.html">Concept C</a>
   </div>
   <button class="theme-toggle-page" id="themeToggle" aria-label="Toggle theme">
     <span class="theme-icon" id="themeIcon">&#9790;</span>
@@ -27,8 +27,8 @@
 
 <!-- Page Header -->
 <div class="page-header">
-  <h1>Concept A: Clinical Monitor</h1>
-  <p>Interactive iPhone mockup &middot; Liquid Glass design</p>
+  <h1>Concept C: Caregiver View</h1>
+  <p>Interactive iPhone mockup &middot; Multi-patient monitoring</p>
 </div>
 
 <!-- iPhone Frame -->
@@ -50,86 +50,169 @@
     <!-- App Content -->
     <div class="app-content">
 
-      <!-- ===== MAIN SCREEN ===== -->
+      <!-- ===== MAIN SCREEN: Patient Grid ===== -->
       <div class="app-screen active" id="screenMain">
 
-        <!-- Top row: connection + user -->
-        <div class="main-top-row">
-
-        <!-- Connection Status -->
-        <div class="connection-pill">
-          <div class="connection-dot"></div>
-          <svg class="watch-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="3"/>
-            <line x1="9" y1="2" x2="9" y2="4"/>
-            <line x1="15" y1="2" x2="15" y2="4"/>
-            <line x1="9" y1="20" x2="9" y2="22"/>
-            <line x1="15" y1="20" x2="15" y2="22"/>
-          </svg>
-          <span>Connected</span>
-          <span class="battery">87%</span>
+        <!-- Top row: title + user icon -->
+        <div class="caregiver-top-row">
+          <span class="caregiver-title">O2 Pulse</span>
+          <button class="user-icon-btn" id="userIconBtn" aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M20 21a8 8 0 1 0-16 0"/>
+            </svg>
+            <div class="user-status-dot" id="userStatusDot"></div>
+          </button>
         </div>
 
-        <!-- User Icon -->
-        <button class="user-icon-btn" id="userIconBtn" aria-label="Account">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="4"/>
-            <path d="M20 21a8 8 0 1 0-16 0"/>
-          </svg>
-          <div class="user-status-dot" id="userStatusDot"></div>
-        </button>
+        <!-- Emergency banner (hidden by default) -->
+        <div class="emergency-banner" id="emergencyBanner">
+          <span class="emergency-banner-icon">&#9888;</span>
+          <span class="emergency-banner-text" id="emergencyText">Critical: Grandma SpO2 at 88%</span>
+        </div>
 
-        </div><!-- /main-top-row -->
+        <!-- Section header -->
+        <div class="patients-header" id="patientsHeader">Patients (4)</div>
 
-        <!-- Vitals: SpO2 gauge + Pulse + PPG -->
-        <div class="vitals-row">
-          <div class="spo2-section">
-            <div class="spo2-gauge">
-              <svg viewBox="0 0 200 200">
-                <circle class="gauge-glow" cx="100" cy="100" r="80" stroke-dasharray="0 502" id="gaugeGlow"/>
-                <circle class="gauge-track" cx="100" cy="100" r="80" stroke-dasharray="377 502"/>
-                <circle class="gauge-fill" cx="100" cy="100" r="80" stroke="var(--green)" stroke-dasharray="0 502" id="gaugeFill"/>
-              </svg>
-              <div class="spo2-value-group">
-                <div>
-                  <span class="spo2-value" id="spo2Value">--</span><span class="spo2-unit">%</span>
-                </div>
-                <div class="spo2-label">Blood Oxygen</div>
-                <div class="spo2-status" id="spo2Status">Normal</div>
+        <!-- Patient cards -->
+        <div class="patient-grid" id="patientGrid">
+
+          <div class="patient-card" data-patient="mom">
+            <div class="patient-avatar" style="background: #30d158; border: 2px solid rgba(48,209,88,0.3);">M</div>
+            <div class="patient-info">
+              <div class="patient-name-row">
+                <span class="patient-name">Mom</span>
+                <div class="patient-connection-dot"></div>
+              </div>
+              <div class="patient-vitals">
+                <span class="patient-spo2" id="spo2-mom">--</span><span class="patient-spo2-unit">%</span>
+                <span class="patient-pulse"><span class="patient-pulse-heart">&hearts;</span> <span id="pulse-mom">--</span></span>
               </div>
             </div>
-          </div>
-          <div class="pulse-badge">
-            <div class="pulse-row">
-              <span class="pulse-heart">&hearts;</span>
-              <span class="pulse-value" id="pulseValue">--</span>
-              <span class="pulse-unit">bpm</span>
+            <div class="patient-right">
+              <canvas class="patient-sparkline" id="spark-mom"></canvas>
+              <span class="patient-alert-text" id="alert-mom">No alerts</span>
             </div>
-            <canvas class="ppg-canvas" id="ppgCanvas"></canvas>
+            <span class="patient-chevron">&#8250;</span>
+          </div>
+
+          <div class="patient-card" data-patient="dad">
+            <div class="patient-avatar" style="background: #0a84ff; border: 2px solid rgba(10,132,255,0.3);">D</div>
+            <div class="patient-info">
+              <div class="patient-name-row">
+                <span class="patient-name">Dad</span>
+                <div class="patient-connection-dot"></div>
+              </div>
+              <div class="patient-vitals">
+                <span class="patient-spo2" id="spo2-dad">--</span><span class="patient-spo2-unit">%</span>
+                <span class="patient-pulse"><span class="patient-pulse-heart">&hearts;</span> <span id="pulse-dad">--</span></span>
+              </div>
+            </div>
+            <div class="patient-right">
+              <canvas class="patient-sparkline" id="spark-dad"></canvas>
+              <span class="patient-alert-text alert-warning" id="alert-dad">Low O2 warning</span>
+            </div>
+            <span class="patient-chevron">&#8250;</span>
+          </div>
+
+          <div class="patient-card" data-patient="grandma">
+            <div class="patient-avatar" style="background: #bf5af2; border: 2px solid rgba(191,90,242,0.3);">G</div>
+            <div class="patient-info">
+              <div class="patient-name-row">
+                <span class="patient-name">Grandma</span>
+                <div class="patient-connection-dot"></div>
+              </div>
+              <div class="patient-vitals">
+                <span class="patient-spo2" id="spo2-grandma">--</span><span class="patient-spo2-unit">%</span>
+                <span class="patient-pulse"><span class="patient-pulse-heart">&hearts;</span> <span id="pulse-grandma">--</span></span>
+              </div>
+            </div>
+            <div class="patient-right">
+              <canvas class="patient-sparkline" id="spark-grandma"></canvas>
+              <span class="patient-alert-text alert-active" id="alert-grandma">Critical low O2</span>
+            </div>
+            <span class="patient-chevron">&#8250;</span>
+          </div>
+
+          <div class="patient-card" data-patient="aunt">
+            <div class="patient-avatar" style="background: #ff9f0a; border: 2px solid rgba(255,159,10,0.3);">A</div>
+            <div class="patient-info">
+              <div class="patient-name-row">
+                <span class="patient-name">Aunt Lisa</span>
+                <div class="patient-connection-dot"></div>
+              </div>
+              <div class="patient-vitals">
+                <span class="patient-spo2" id="spo2-aunt">--</span><span class="patient-spo2-unit">%</span>
+                <span class="patient-pulse"><span class="patient-pulse-heart">&hearts;</span> <span id="pulse-aunt">--</span></span>
+              </div>
+            </div>
+            <div class="patient-right">
+              <canvas class="patient-sparkline" id="spark-aunt"></canvas>
+              <span class="patient-alert-text" id="alert-aunt">No alerts</span>
+            </div>
+            <span class="patient-chevron">&#8250;</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== DETAIL SCREEN: Single Patient ===== -->
+      <div class="app-screen" id="screenDetail">
+
+        <!-- Back header -->
+        <div class="detail-back-header">
+          <button class="detail-back-btn" id="detailBackBtn">
+            <span class="detail-back-arrow">&#8249;</span>
+            <span>Back</span>
+          </button>
+          <span class="detail-patient-name" id="detailPatientName">Mom</span>
+        </div>
+
+        <!-- SpO2 donut ring -->
+        <div class="detail-ring-section">
+          <div class="detail-ring-container">
+            <svg class="detail-ring-svg" viewBox="0 0 130 130">
+              <circle class="detail-ring-track" cx="65" cy="65" r="54"/>
+              <circle class="detail-ring-fill" cx="65" cy="65" r="54" id="detailRingFill"/>
+            </svg>
+            <div class="detail-ring-center">
+              <div>
+                <span class="detail-ring-value" id="detailSpo2Value">--</span><span class="detail-ring-unit">%</span>
+              </div>
+              <div class="detail-ring-label">SpO2</div>
+            </div>
           </div>
         </div>
 
-        <!-- Health Alerts -->
-        <div class="health-alerts" id="healthAlerts">
-          <div class="health-alert alert-red">
-            <div class="health-alert-icon">&#9888;</div>
-            <div class="health-alert-body">
-              <div class="health-alert-title">Critically Low O2 <span class="health-alert-time">3:42 AM</span></div>
-              <div class="health-alert-desc">SpO2 <strong>78%</strong> for 2m 15s</div>
-            </div>
-            <button class="health-alert-dismiss" aria-label="Dismiss">&times;</button>
-          </div>
-          <div class="health-alert alert-yellow">
-            <div class="health-alert-icon">&#9211;</div>
-            <div class="health-alert-body">
-              <div class="health-alert-title">Sleep Apnea <span class="health-alert-time">2:10 AM</span></div>
-              <div class="health-alert-desc">3 events, longest pause <strong>18s</strong></div>
-            </div>
-            <button class="health-alert-dismiss" aria-label="Dismiss">&times;</button>
-          </div>
+        <!-- Status badge -->
+        <div style="text-align:center; margin-bottom:12px;">
+          <span class="detail-ring-status" id="detailStatus">Normal</span>
         </div>
 
-        <!-- Chart Section -->
+        <!-- Pulse row -->
+        <div class="detail-pulse-row">
+          <span class="detail-pulse-heart">&hearts;</span>
+          <span class="detail-pulse-value" id="detailPulseValue">--</span>
+          <span class="detail-pulse-unit">bpm</span>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="quick-actions">
+          <button class="quick-action-btn">
+            <span class="quick-action-icon">&#128222;</span>
+            <span class="quick-action-label">Call</span>
+          </button>
+          <button class="quick-action-btn">
+            <span class="quick-action-icon">&#128172;</span>
+            <span class="quick-action-label">Message</span>
+          </button>
+          <button class="quick-action-btn">
+            <span class="quick-action-icon">&#128203;</span>
+            <span class="quick-action-label">History</span>
+          </button>
+        </div>
+
+        <!-- Chart section -->
         <div class="chart-section">
           <div class="period-selector">
             <button class="period-btn active" data-period="D">D</button>
@@ -159,6 +242,12 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Patient-specific alert -->
+        <div class="detail-alert" id="detailAlert">
+          <span class="detail-alert-icon" id="detailAlertIcon">&#10003;</span>
+          <span class="detail-alert-text" id="detailAlertText">All vitals normal</span>
         </div>
 
       </div>
@@ -343,9 +432,12 @@
     <div class="tab-bar">
       <button class="tab-item active" data-tab="screenMain">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
         </svg>
-        <span>Monitor</span>
+        <span>Patients</span>
       </button>
       <button class="tab-item" data-tab="screenAlerts">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -416,6 +508,6 @@
 
 <script src="js/shared.js"></script>
 <script src="js/iphone-chrome.js"></script>
-<script src="js/concept-a.js"></script>
+<script src="js/concept-c.js"></script>
 </body>
 </html>
